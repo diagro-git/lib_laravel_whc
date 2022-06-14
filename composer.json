@@ -1,0 +1,46 @@
+{
+    "name": "diagro/lib_laravel_whc",
+    "description": "Library for webhook clients for backend applications",
+    "type": "library",
+    "version": "1.0",
+    "authors": [
+        {
+            "name": "Stijn Leenknegt",
+            "email": "stijn@diagro.be"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/diagro-git/lib_laravel_token.git"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "laravel/framework":"^9.0",
+        "diagro/lib_laravel_token": "^1.0",
+        "spatie/laravel-webhook-client": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Diagro\\Webhooks\\Client\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Diagro\\Webhooks\\Client\\DiagroServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "github-oauth": {
+            "github.com": "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"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
