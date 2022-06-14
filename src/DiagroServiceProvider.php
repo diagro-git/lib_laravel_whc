@@ -32,7 +32,7 @@ class DiagroServiceProvider extends ServiceProvider
         $kernel->prependToMiddlewarePriority(BackendAppId::class);
 
         //routes
-        $this->loadRoutesFrom(__DIR__ .' ../routes/webhooks.php');
+        $this->loadRoutesFrom(__DIR__ . '/../routes/webhooks.php');
 
         //commands
         if ($this->app->runningInConsole()) {
