@@ -1,23 +1,9 @@
 <?php
 namespace Diagro\Webhooks\Client;
 
-use Diagro\Backend\Console\Commands\BackendTokenGenerator;
-use Diagro\Backend\Middleware\AppIdValidate;
-use Diagro\Backend\Middleware\AuthorizedApplication;
-use Diagro\Backend\Middleware\BackendAppIdValidate;
-use Diagro\Backend\Middleware\CacheResource;
-use Diagro\Backend\Middleware\TokenValidate;
-use Diagro\Token\ApplicationAuthenticationToken;
-use Diagro\Token\Auth\TokenProvider;
 use Diagro\Webhooks\Client\Middleware\BackendAppId;
-use Exception;
 use Illuminate\Foundation\Http\Kernel;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
 /**
