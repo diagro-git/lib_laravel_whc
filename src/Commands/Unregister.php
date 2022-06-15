@@ -47,7 +47,7 @@ class Unregister extends Command
     {
         return Http::withHeaders([
             'x-backend-token' => env('DIAGRO_BACKEND_TOKEN'),
-            'content-type' => 'application/json'
+            'accept' => 'application/json',
         ])->delete($unregisterUrl, ['url' => $clientUrl]);
     }
 
