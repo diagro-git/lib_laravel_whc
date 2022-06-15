@@ -3,12 +3,12 @@ namespace Diagro\Webhooks\Client;
 
 use Diagro\Webhooks\Client\Commands\Register;
 use Diagro\Webhooks\Client\Commands\Unregister;
+use Diagro\Webhooks\Client\Http\Controllers\WebhookController;
 use Diagro\Webhooks\Client\Middleware\BackendAppId;
 use Illuminate\Foundation\Http\Kernel;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Spatie\WebhookClient\Http\Controllers\WebhookController;
 
 /**
  * Bridge between package and laravel backend application.

@@ -42,8 +42,8 @@ class EventNameProfile implements WebhookProfile
         $config = collect(config('webhook-client.configs'))
                     ->first(fn(array $config) => $config['name'] == $configName);
 
-        if(is_array($config) && isset($config['allowed_events']) && is_array($config['allowed_events']) && Arr::isList($config['allowed_events'])) {
-            $allowed = $config['allowed_events'];
+        if(is_array($config) && isset($config['allowed_events']) && is_array($config['allowed_events']) && Arr::isAssoc($config['allowed_events'])) {
+            $allowed = array_keys($config['allowed_events']);
         }
 
         return $allowed;
