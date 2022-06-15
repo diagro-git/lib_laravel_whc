@@ -20,7 +20,7 @@ class WebhookProcessor extends BaseWebhookProcessor
             $config = $this->getConfig($webhookCall->name);
 
             //get the job
-            $job = Arr::get($config, "allowed_events.$eventName");
+            $job = $config['allowed_events'][$eventName];
             if (empty($job)) {
                 throw new Exception("No webhook client job found for event $eventName!");
             }
