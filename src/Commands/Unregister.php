@@ -32,7 +32,7 @@ class Unregister extends Command
         collect(config('webhook-client.configs'))
             ->each(function(array $config) use ($name, $clientUrl) {
                 if(empty($name) || $config['name'] === $name) {
-                    $response = $this->sendUnregisterRequest($config['unregisterUrl'], $clientUrl);
+                    $response = $this->sendUnregisterRequest($config['unregister_url'], $clientUrl);
                     if($response->ok()) {
                         $this->info(sprintf("Unregistratie succesvol voor %s.", $config['name']));
                     } else {

@@ -32,7 +32,7 @@ class Register extends Command
         collect(config('webhook-client.configs'))
             ->each(function(array $config) use ($name, $clientUrl) {
                 if(empty($name) || $config['name'] === $name) {
-                    $response = $this->sendRegisterRequest($config['registerUrl'], $clientUrl, $config['signingSecret']);
+                    $response = $this->sendRegisterRequest($config['register_url'], $clientUrl, $config['signing_secret']);
                     if($response->ok()) {
                         $this->info(sprintf("Registratie succesvol voor %s.", $config['name']));
                     } else {
