@@ -1,7 +1,9 @@
 <?php
 namespace Diagro\Webhooks\Client;
 
+use Exception;
 use Illuminate\Support\Arr;
+use Spatie\WebhookClient\Jobs\ProcessWebhookJob;
 use Spatie\WebhookClient\Models\WebhookCall;
 use Spatie\WebhookClient\WebhookProcessor as BaseWebhookProcessor;
 
@@ -19,12 +21,17 @@ class WebhookProcessor extends BaseWebhookProcessor
 
             //get the job
             $job = Arr::get($config, "allowed_events.$eventName");
-            if ($job === null) {
-                throw new \Exception("No webhook client job found for event $eventName!");
+            if (empty($job)) {
+                throw new Exception("No webhook client job found for event $eventName!");
+            }
+            $job = new $job($webhookCall);
+
+            //right job?
+            if(! ($job instanceof ProcessWebhookJob)) {
+                throw new Exception("Webhook job doesn't extend ProcessWebhookJob class!");
             }
 
             //dispatch the job
-            $job = new $job($webhookCall);
             $connection = Arr::get($config, 'connection', $this->getGlobalConnection());
             $queue = Arr::get($config, 'queue', $this->getGlobalQueue());
 
@@ -39,7 +46,7 @@ class WebhookProcessor extends BaseWebhookProcessor
             $webhookCall->clearException();
 
             dispatch($job);
-        } catch(\Exception $exception)
+        } catch(Exception $exception)
         {
             $webhookCall->saveException($exception);
             throw $exception;
