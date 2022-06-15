@@ -43,6 +43,12 @@ class Register extends Command
     }
 
 
+    private function getClientUrl(string $name): string
+    {
+        return route('webhook-client-' . $name);
+    }
+
+
     private function sendRegisterRequest(string $registerUrl, string $clientUrl, string $signing_secret): PromiseInterface|Response
     {
         return Http::withHeaders([
