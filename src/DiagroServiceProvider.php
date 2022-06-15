@@ -49,7 +49,7 @@ class DiagroServiceProvider extends ServiceProvider
 
     private function webhooksRoutesFile()
     {
-        $file = base_path('routes/webhooks');
+        $file = base_path('routes/webhooks.php');
         if(! file_exists($file)) {
             touch($file);
             file_put_contents($file, file_get_contents(__DIR__ . '/../routes/webhooks-example.php'));
