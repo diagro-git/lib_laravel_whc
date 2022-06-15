@@ -48,7 +48,7 @@ class Register extends Command
         return Http::withHeaders([
             'x-backend-token' => env('DIAGRO_BACKEND_TOKEN'),
             'accept' => 'application/json',
-        ])->post($registerUrl, ['url' => $clientUrl, 'signing_secret' => $signing_secret]);
+        ])->post($registerUrl, ['url' => $clientUrl, 'signed_secret' => $signing_secret]);
     }
 
 
