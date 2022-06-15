@@ -36,7 +36,7 @@ class Register extends Command
                     if($response->ok()) {
                         $this->info(sprintf("Registratie succesvol voor %s.", $config['name']));
                     } else {
-                        $this->error(sprintf("Registratie mislukt voor %s (status: %d, error: %s)", $config['name'], $response->status(), $response->body()));
+                        $this->error(sprintf("Registratie mislukt voor %s (url: %s, status: %d, error: %s)", $config['register_url'], $config['name'], $response->status(), $response->body()));
                     }
                 }
             });
