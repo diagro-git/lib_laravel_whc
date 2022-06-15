@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Http;
  * Standaard worden alle clients geregistreerd maar
  * je kan ook --name="..." gebruiken.
  *
- * In de config moet een extra veld bijkomen: registerUrl
+ * In de config moet een extra veld bijkomen: register_url
  * Deze verwijst naar de volledige webhook register url
  * van de webhook server.
  */
@@ -31,12 +31,16 @@ class Register extends Command
         collect(config('webhook-client.configs'))
             ->each(function(array $config) use ($name) {
                 if(empty($name) || $config['name'] === $name) {
-                    $clientUrl = $this->getClientUrl($config['name']);
-                    $response = $this->sendRegisterRequest($config['register_url'], $clientUrl, $config['signing_secret']);
-                    if($response->ok()) {
-                        $this->info(sprintf("Registratie succesvol voor %s.", $config['name']));
+                    if(isset($config['register_url'])) {
+                        $clientUrl = $this->getClientUrl($config['name']);
+                        $response = $this->sendRegisterRequest($config['register_url'], $clientUrl, $config['signing_secret']);
+                        if ($response->ok()) {
+                            $this->info(sprintf("Registratie succesvol voor %s.", $config['name']));
+                        } else {
+                            $this->error(sprintf("Registratie mislukt voor %s (url: %s, status: %d, error: %s)", $config['name'], $config['register_url'], $response->status(), $response->body()));
+                        }
                     } else {
-                        $this->error(sprintf("Registratie mislukt voor %s (url: %s, status: %d, error: %s)", $config['name'], $config['register_url'], $response->status(), $response->body()));
+                        $this->error(sprintf("Webhooks config heeft geen register_url veld (config: %s)", $config['name']));
                     }
                 }
             });
