@@ -6,7 +6,9 @@ use Diagro\Webhooks\Client\Commands\Unregister;
 use Diagro\Webhooks\Client\Middleware\BackendAppId;
 use Illuminate\Foundation\Http\Kernel;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Spatie\WebhookClient\Http\Controllers\WebhookController;
 
 /**
  * Bridge between package and laravel backend application.
@@ -34,6 +36,9 @@ class DiagroServiceProvider extends ServiceProvider
         $kernel->prependToMiddlewarePriority(BackendAppId::class);
 
         //routes
+        Route::macro('webhooks', function (string $url, string $name = 'default') {
+            return Route::post($url, WebhookController::class)->name("webhook-client-{$name}");
+        });
         $this->webhooksRoutesFile();
         $this->loadRoutesFrom(__DIR__ . '/../routes/webhooks.php');
 

@@ -29,9 +29,6 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-                "Spatie\\WebhookClient\\WebhookClientServiceProvider"
-            ],
             "providers": [
                 "Diagro\\Webhooks\\Client\\DiagroServiceProvider"
             ]
