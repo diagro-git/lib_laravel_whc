@@ -27,11 +27,11 @@ class Unregister extends Command
     public function handle()
     {
         $name = $this->option('name');
-        $clientUrl = config('app.url');
 
         collect(config('webhook-client.configs'))
-            ->each(function(array $config) use ($name, $clientUrl) {
+            ->each(function(array $config) use ($name) {
                 if(empty($name) || $config['name'] === $name) {
+                    $clientUrl = $this->getClientUrl($config['name']);
                     $response = $this->sendUnregisterRequest($config['unregister_url'], $clientUrl);
                     if($response->ok()) {
                         $this->info(sprintf("Unregistratie succesvol voor %s.", $config['name']));
@@ -40,6 +40,12 @@ class Unregister extends Command
                     }
                 }
             });
+    }
+
+
+    private function getClientUrl(string $name): string
+    {
+        return route('webhook-client-' . $name);
     }
 
 

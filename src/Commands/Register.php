@@ -27,11 +27,11 @@ class Register extends Command
     public function handle()
     {
         $name = $this->option('name');
-        $clientUrl = config('app.url');
 
         collect(config('webhook-client.configs'))
-            ->each(function(array $config) use ($name, $clientUrl) {
+            ->each(function(array $config) use ($name) {
                 if(empty($name) || $config['name'] === $name) {
+                    $clientUrl = $this->getClientUrl($config['name']);
                     $response = $this->sendRegisterRequest($config['register_url'], $clientUrl, $config['signing_secret']);
                     if($response->ok()) {
                         $this->info(sprintf("Registratie succesvol voor %s.", $config['name']));
