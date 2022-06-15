@@ -19,7 +19,7 @@ class Register extends Command
 {
 
 
-    protected $signature = 'diagro:webhooks register {--name=}';
+    protected $signature = 'diagro:webhooks-register {--name=}';
 
     protected $description = 'Register a webhook client to the server';
 

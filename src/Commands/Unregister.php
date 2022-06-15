@@ -19,7 +19,7 @@ class Unregister extends Command
 {
 
 
-    protected $signature = 'diagro:webhooks unregister {--name=}';
+    protected $signature = 'diagro:webhooks-unregister {--name=}';
 
     protected $description = 'Unregister a webhook client to the server';
 
