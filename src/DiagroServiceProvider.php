@@ -1,6 +1,8 @@
 <?php
 namespace Diagro\Webhooks\Client;
 
+use Diagro\Webhooks\Client\Commands\Register;
+use Diagro\Webhooks\Client\Commands\Unregister;
 use Diagro\Webhooks\Client\Middleware\BackendAppId;
 use Illuminate\Foundation\Http\Kernel;
 use Illuminate\Routing\Router;
@@ -37,9 +39,8 @@ class DiagroServiceProvider extends ServiceProvider
         //commands
         if ($this->app->runningInConsole()) {
             $this->commands([
-                //publish webhook configs to the backend servers
-                // at endpoint POST /webhooks/register {url, signing_secret}
-                //can be used in init.sh for dockers: php artisan diagro:websockets publish (--name=....)
+                Register::class,
+                Unregister::class,
             ]);
         }
     }
