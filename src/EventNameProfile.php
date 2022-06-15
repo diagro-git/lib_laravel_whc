@@ -2,8 +2,8 @@
 namespace Diagro\Webhooks\Client;
 
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
