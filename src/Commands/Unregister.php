@@ -36,7 +36,7 @@ class Unregister extends Command
                     if($response->ok()) {
                         $this->info(sprintf("Unregistratie succesvol voor %s.", $config['name']));
                     } else {
-                        $this->error(sprintf("Unregistratie mislukt voor %s (url: %s, status: %d, error: %s)", $config['unregister_url'], $config['name'], $response->status(), $response->body()));
+                        $this->error(sprintf("Unregistratie mislukt voor %s (url: %s, status: %d, error: %s)", $config['name'], $config['unregister_url'], $response->status(), $response->body()));
                     }
                 }
             });
