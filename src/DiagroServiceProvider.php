@@ -34,6 +34,7 @@ class DiagroServiceProvider extends ServiceProvider
         $kernel->prependToMiddlewarePriority(BackendAppId::class);
 
         //routes
+        $this->webhooksRoutesFile();
         $this->loadRoutesFrom(__DIR__ . '/../routes/webhooks.php');
 
         //commands
@@ -42,6 +43,16 @@ class DiagroServiceProvider extends ServiceProvider
                 Register::class,
                 Unregister::class,
             ]);
+        }
+    }
+
+
+    private function webhooksRoutesFile()
+    {
+        $file = base_path('routes/webhooks');
+        if(! file_exists($file)) {
+            touch($file);
+            file_put_contents($file, file_get_contents(__DIR__ . '/../routes/webhooks-example.php'));
         }
     }
 
