@@ -2,17 +2,12 @@
     "name": "diagro/lib_laravel_whc",
     "description": "Library for webhook clients for backend applications",
     "type": "library",
-    "version": "1.0",
+    "version": "1.1",
+    "license": "Beerware",
     "authors": [
         {
             "name": "Stijn Leenknegt",
             "email": "stijn@diagro.be"
-        }
-    ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/diagro-git/lib_laravel_token.git"
         }
     ],
     "require": {
@@ -37,10 +32,7 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true,
-        "github-oauth": {
-            "github.com": "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"
-        }
+        "sort-packages": true
     },
     "minimum-stability": "stable",
     "prefer-stable": true

@@ -42,6 +42,12 @@ class DiagroServiceProvider extends ServiceProvider
         $this->webhooksRoutesFile();
         $this->loadRoutesFrom(__DIR__ . '/../routes/webhooks.php');
 
+        //publish
+        $this->publishes([
+            __DIR__ . '/../configs/webhook-client.php' => config_path('webhook-client.php'),
+            __DIR__ . '/../routes/webhooks-example.php' => base_path('routes/webhooks.php'),
+        ]);
+
         //commands
         if ($this->app->runningInConsole()) {
             $this->commands([
